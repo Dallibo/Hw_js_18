@@ -1,75 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
-            position: relative;
-        }
-        #gun, #bullet, #target{
-            position: absolute;
-        }
-        #bullet, #target{
-            border-radius: 50%;
-        }
-        #gun{
-            top: 50px;
-            left: 0;
-            width: 50px;
-            height: 20px;
-            background-color: navy;
-        }
-        #bullet{
-            top: 50px;
-            left: 30px;
-            width: 20px;
-            height: 20px;
-            background-color: khaki;
-            z-index: -1;
-        }
-        #target{
-            top: 35px;
-            left: 200px;
-            width: 50px;
-            height: 50px;
-            background-color: darkorange;
+        .d1 {
+            background-color: bisque;
+            text-align: center;
+            width: 200px;
+            padding: 10px;
         }
     </style>
 </head>
+
 <body>
-    <h2>Press SPACE to hit target!</h2>
-    <div id="gun"></div>
-    <div id="bullet"></div>
-    <div id="target"></div>
+    <div class="d1">
+        <div>Random number</div>
+        <h2 id="random">1</h2>
+        <button onclick="RandomNumber()">Generate random number</button>
+    </div>
+
     <script>
-        var onFly = false;
-        var bulletX = 30;
-        function bulletMove(){
-            if(onFly){
-            bulletX += 5;
-            console.log(bulletX);
-            if(bulletX>=200){
-                onFly = false;
-                bulletX = 30;
-            }
-            setTimeout(bulletMove, 100);
-            bullet.style.left = `${bulletX}px`;
+        function RandomNumber() {
+            var randomNumber = Math.floor(Math.random() * 100) + 1;
+            document.getElementById("random").textContent = randomNumber;
         }
-        }
-        document.body.addEventListener("keydown", function(e){
-            console.log(e);
-            if(e.code == "Escape"&&onFly){
-                onFly = false;
-                bulletX = 30;
-                bullet.style.left = `${bulletX}px`;
-            }
-            if(e.code == "Space"&&!onFly){
-                onFly = true;
-                bulletMove();
-            }
-        });
     </script>
 </body>
+
 </html>
